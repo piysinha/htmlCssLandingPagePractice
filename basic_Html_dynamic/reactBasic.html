@@ -1,0 +1,67 @@
+<html>
+    <body>
+        <div>
+            <input type="text"></input>
+            <button onclick="addToDo()">add to do</button>
+            <button onclick="deleteFirstToDo()">Delete First ToDo</button>
+            <button onclick="deleteLastToDo()">Delete Last ToDo</button>
+        </div>
+        <div id="todos"></div>
+    </body>
+    <script>
+        let toDos = [];
+        function addToDo(){
+            toDos.push({
+                title: document.querySelector("input").value
+            })
+            render();
+        }
+
+        function deleteFirstToDo(){
+            toDos.splice(0,1);
+            render();
+        }
+
+        function deleteLastToDo(){
+            toDos.splice(toDos.length-1,1);
+            render();
+        }
+
+        function deleteToDo(index){
+            toDos.splice(index, 1);
+            render();
+        }
+
+        function createToDoComponent(todo, index){
+            //Creating Elements
+            const spanEl = document.createElement("span");
+            const buttonEl = document.createElement("button");
+            const divEl = document.createElement("div");
+            divEl.setAttribute("id","todo-"+index);
+
+            //Setting values for Span and button
+            let value = todo.title;
+            console.log(value);
+            spanEl.innerHTML = value;
+            buttonEl.innerHTML = "Delete";
+            buttonEl.addEventListener('click', function(){
+                deleteToDo(index);
+            })
+            
+            
+            //Inserting span and button inside div element
+            divEl.append(spanEl);
+            divEl.append(buttonEl);
+            return divEl;
+        }
+
+        function render(){
+            //Appending div to boby which has span and button inside it
+            document.getElementById("todos").innerHTML = " ";
+            for(let i = 0;i < toDos.length; i++){
+                const element = createToDoComponent(toDos[i], i);
+                document.getElementById("todos").appendChild(element);
+            }
+        }
+    </script>
+</html>

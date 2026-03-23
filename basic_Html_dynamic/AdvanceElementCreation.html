@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"></input>
+    <button onclick="addToDo()">Add Todo!</button>
+    
+
+</body>
+<script>
+    let counter = 1;
+    function addToDo(){
+        //Taking values from input
+        const inputValue = document.querySelector("input").value;
+        
+        //Creating Elements
+        const spanEl = document.createElement("span");
+        const buttonEl = document.createElement("button");
+        const divEl = document.createElement("div");
+        divEl.setAttribute("id","todo-"+counter);
+
+        //Setting values for Span and button
+        spanEl.innerHTML = inputValue;
+        buttonEl.innerHTML = "Delete";
+        
+        //Inserting span and button inside div element
+        divEl.appendChild(spanEl);
+        divEl.appendChild(buttonEl); 
+        
+        //Appending div to boby which has span and button inside it
+        document.querySelector("body").appendChild(divEl);
+        counter++;
+    }
+
+    function deleteToDO(index){
+        const element = document.getElementById("todo-"+index);
+        element.parentNode.removeChild(element);
+    }
+</script>
+</html>

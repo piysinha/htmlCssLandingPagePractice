@@ -9,7 +9,4 @@ function setTimeoutPromisified(time){
 function callBack(){
     console.log("Time has been passed");
 }
-
-const p = setTimeoutPromisified(10000);
-
-p.then(callBack);
+setTimeoutPromisified(10000).then(callBack);

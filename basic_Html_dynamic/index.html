@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <h1 id="title">To do List</h1>
+    <h4 id="todo">1. take class</h4>
+    <h4 id="todo">2. Go to gym</h4>
+    <h4 id="todo">3. Take Lessons</h4>
+    <button onclick="deleteRandomToDo()">Delete Todo!</button>
+    <div>
+        <input type="text" placeholder="Add Your To Do Here">
+        <button id="btn" onclick="addToDo()">Add ToDo</button>
+    </div>
+    <script>
+        function addToDo(){
+            const inputElement = document.querySelector("input");
+            const value = inputElement.value;
+            console.log(value)
+        }
+
+        function deleteRandomToDo(){
+            const element = document.getElementById('todo');
+            const parentElement = element.parentNode;
+            parentElement.removeChild(element);
+        }
+        
+        let sec = 0;
+        function callBack(){
+            document.getElementById('todo').innerHTML = sec + '. Timer Onn';
+            sec = sec + 1; 
+        }
+        setInterval(callBack, 1000);
+        
+
+        const docEl = document.createElement("div");
+        docEl.innerHTML = "hi there";
+        console.log(docEl.innerHTML);
+        document.querySelector("body").appendChild(docEl)
+        
+    </script>
+</body>
+
+</html>
